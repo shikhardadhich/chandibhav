@@ -31,7 +31,7 @@ export default function MyTable({ silver_rates, isUserLoggedIn }: any) {
       }
     }
     fetchData();
-  }, []);
+  }, [isUserLoggedIn]);
   async function handleSave() {
     let rowData: RowData;
     rowData = selectedRow!;
