@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
 import Modal from "./Modal";
+import Link from "next/link";
 
 interface RowData {
   id: number;
@@ -18,15 +19,14 @@ export default function MyTable({ silver_rates, isUserLoggedIn }: any) {
   const [selectedRow, setSelectedRow] = useState<RowData>();
 
   useEffect(() => {
-     function fetchData() {
-
+    function fetchData() {
       if (isUserLoggedIn) {
         setData(silver_rates);
       } else {
-        const result = silver_rates.filter((obj:any) => {
+        const result = silver_rates.filter((obj: any) => {
           return obj.is_active === true;
         });
-        
+
         setData(result);
       }
     }
@@ -77,7 +77,15 @@ export default function MyTable({ silver_rates, isUserLoggedIn }: any) {
         }}
         className="hover:bg-gray-100 cursor-pointer"
       >
-        <td className="py-2 pl-5">{row.city}</td>
+        <td className="py-2 pl-5">
+          <Link
+            href={{
+              pathname: "/" + row.city,
+            }}
+          >
+            {row.city}
+          </Link>
+        </td>
         <td className="py-2 text-left">₹ {row.rates}</td>
         <td className="py-2  text-center">
           {new Date(row.created_at).toLocaleDateString()} -{" "}
@@ -129,7 +137,6 @@ export default function MyTable({ silver_rates, isUserLoggedIn }: any) {
         <input
           type="checkbox"
           id="isActive"
-          
           checked={isActive}
           onChange={() => handleCheckboxChange()}
           className="h-4 w-4 text-blue-600 "
