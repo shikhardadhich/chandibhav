@@ -21,7 +21,7 @@ const Footer = () => (
           </Link>
         </li>
         <li className="pr-5">
-          <Link href="https://goldpricetoday.co.in/category/silver-price-news/">
+          <Link href="/news">
             <a>News</a>
           </Link>
         </li>

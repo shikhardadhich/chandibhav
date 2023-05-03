@@ -46,7 +46,7 @@ const Header = () => {
           </li>
 
           <li className="pr-5">
-            <Link href="https://goldpricetoday.co.in/category/silver-price-news/">
+            <Link href="/news">
               <a>Silver News</a>
             </Link>
           </li>
