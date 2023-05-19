@@ -3,6 +3,7 @@ import { Meta } from "../../layout/Meta";
 import { AppConfig } from "../../utils/AppConfig";
 import { Header } from "../../templates/Header";
 import Link from "next/link";
+import { Footer } from "../../templates/Footer";
 
 const About1 = () => {
   return (
@@ -152,6 +153,7 @@ const About1 = () => {
           </div>
         </div>
       </div>
+      <Footer></Footer>
     </>
   );
 };
