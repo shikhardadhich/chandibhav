@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Header } from "../../templates/Header";
 import { Footer } from "../../templates/Footer";
+import { Logo } from "../../templates/Logo";
 
 function News() {
   const [posts, setPosts] = useState([]);
   const [imageData, setImageData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -12,9 +14,11 @@ function News() {
         "https://goldpricetoday.co.in/wp-json/wp/v2/posts?categories=803"
       );
       const data = await response.json();
+      setIsLoading(false);
       setPosts(data);
     }
     fetchData();
+    
   }, []);
 
   useEffect(() => {
@@ -39,6 +43,12 @@ function News() {
   return (
     <>
       <Header></Header>
+       {isLoading ? <div className="flex items-stretch place-content-center h-96 justify-center">
+    {/* <img src='/assets/images/chandibhavlogo.png' className="animate-spin h-48 w-48 mr-3" /> */}
+
+    Loading ....
+    </div> :
+    
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post, index) => {
           return (
@@ -69,6 +79,7 @@ function News() {
           );
         })}
       </div>
+      }
       <Footer></Footer>
     </>
   );
