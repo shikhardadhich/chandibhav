@@ -31,7 +31,7 @@ const HorizontalCards = ({silver_rates}:any) => {
                
                 <Text></Text>
                 <Text css={{ color: "$accents7", fontWeight: "$bold", fontSize: "$sm" }}>
-                 ₹{_rate.rates/1000}  Per Gram
+                 ₹{_rate.rates/100} Per 100 Gram
                 </Text>
               </Row>
               </Col>

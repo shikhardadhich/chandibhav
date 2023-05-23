@@ -80,7 +80,8 @@ export default function MyTable({ silver_rates, isUserLoggedIn }: any) {
         <td className="py-2 pl-5">
           <Link
             href={{
-              pathname: "/" + row.city,
+              pathname: "/" + row.city 
+              , query: { rate: row.rates }
             }}
           >
             {row.city}

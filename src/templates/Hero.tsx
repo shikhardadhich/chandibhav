@@ -14,20 +14,20 @@ import router from "next/router";
 const Hero = ({ silver_rates }: any) => {
   return (
     <Background color="bg-gray-100">
-      <Section yPadding="pt-10 pb-5">
+      <Section yPadding="pb-5">
         <HeroOneButton
           title={
             <>
               {"Silver Price Today in India (भारत)\n"}
               <span className="text-primary-500">
-                चांदी के दाम (1 KG) ₹
+              चांदी का भाव (1 KG) - ₹
                 {silver_rates.map((_rate: any, _index: any) => {
                   return <>{_rate.city == "India" ? _rate.rates : ""}</>;
                 })}
               </span>
             </>
           }
-          description="Your one stop sloution for Silver. Silver is new GOLD!"
+          description="I Love Silver. Silver Is New GOLD!"
           button={null}
         />
       </Section>

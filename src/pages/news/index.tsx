@@ -31,7 +31,12 @@ function News() {
           .then((data) => {
             setImageData(data);
             var myImg = document.getElementById(post.id) as HTMLImageElement;
-            myImg.src = data.source_url;
+            try {
+              myImg.src = data.source_url;  
+            } catch (error) {
+              
+            }
+            
 
             // post.featured_img = data.source_url;
           });

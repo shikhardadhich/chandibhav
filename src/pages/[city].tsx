@@ -6,47 +6,50 @@ import { AppConfig } from "../utils/AppConfig";
 import { useRouter } from "next/router";
 import { supabase } from "../lib/supabase";
 import { Section } from "../layout/Section";
+import { Footer } from "../templates/Footer";
 
-type silver_rates = [
-  {
-    rates: string;
-  }
-];
+interface City_Rate {
+  cityName: string;
+  rate:  string
+  
+}
 const City = () => {
+  
   const router = useRouter();
-
-  const [rates, setRates] = useState([]);
-
+  console.log(JSON.stringify(router.query))
+  const [cityRate, setCityRate] = useState<City_Rate | null>();
+  
+  
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const { data: silver_rates, error } = await supabase
-          .from("citylist")
-          .select("rates")
-          .eq("city", router.asPath.replaceAll("/", ""));
-        setRates(silver_rates[0].rates);
-      } catch (err) {
-        console.log(err);
-      }
+    if([router.isReady])
+    {
+      
+      setCityRate({cityName:router.query?.city ? router.query?.city.toString() : "..."   ,rate:router.query?.rate ? router.query?.rate.toString() : "..."})
     }
-    fetchData();
-  }, []);
-  async function getRate(cityName) {
-    return "sss";
-  }
+
+  },[[router.isReady]]);
+ 
   return (
     <section className="h-screen">
       <Meta title={AppConfig.title} description={AppConfig.description} />
       <Header></Header>
       <div className="flex justify-center">
-        <h1 className=" mb-4 text-3xl flex font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-          <span className="content-center text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-            {router.asPath.replaceAll("/", "")} -
-          </span>{" "}
-          ₹{rates} चांदी के दाम (1 KG)
-        </h1>
+        <h1 className="mb-4 text-3xl flex font-extrabold text-gray  md:text-5xl lg:text-6xl">
+        <span className="content-center text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+          Silver Price Today (चांदी का भाव)
+          </span>
+       </h1>
+      
+    
       </div>
+      <div className="flex justify-center">
       <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+        
+      <h1 className="mb-4 text-3xl flex font-extrabold text-gray-900 md:text-5xl lg:text-6xl content-center">{cityRate?.cityName} -  ₹{cityRate?.rate} /KG  </h1>
+      
+      </p>
+      </div>
+      <p className="text-lg font-normal text-gray-900 lg:text-xl">
         <Section>
           <p>
             <b>&quot;Today&apos;s Silver Rate&quot;</b>
@@ -244,7 +247,9 @@ const City = () => {
           </p>
         </Section>
       </p>
+    <Footer></Footer>  
     </section>
+    
   );
 };
 
