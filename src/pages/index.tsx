@@ -21,6 +21,8 @@ const Index = ({ silver_rates }: any) => {
 
   return ( <> 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPV67GM5KE"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9114385569020403"
+     crossOrigin="anonymous"></script>
   <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
