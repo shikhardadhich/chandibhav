@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { Base } from "../templates/Base";
 import { supabase } from "../lib/supabase";
 import { useEffect, useState } from "react";
-
+import Script from 'next/script'
 const Index = ({ silver_rates }: any) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
@@ -19,7 +19,17 @@ const Index = ({ silver_rates }: any) => {
     getUserProfile();
   });
 
-  return <Base silver_rates={silver_rates} isUserLoggedIn={isUserLoggedIn} />;
+  return ( <> 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JPV67GM5KE"></script>
+  <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-JPV67GM5KE');
+        `}
+      </Script><Base silver_rates={silver_rates} isUserLoggedIn={isUserLoggedIn} /></>);
 };
 
 export default Index;
